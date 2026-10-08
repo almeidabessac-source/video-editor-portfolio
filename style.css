@@ -3,3 +3,4 @@
 .button,.skip{color:#000;background:#fff}.button:hover{color:#000;background:#fff}.hero,.contact{background:#000}.orb{background:#000;box-shadow:0 0 40px #ffffff22}.video-frame iframe,.orb img{filter:grayscale(1)}header{background:#000}.video-frame{box-shadow:none}
 
 .orb{overflow:hidden}.orb img{display:block;object-position:center center}
+.about{display:block;text-align:center}.about #bio{max-width:800px;margin:0 auto;font-size:24px;line-height:1.7;color:#fff}@media(max-width:767px){.about #bio{font-size:20px}}
