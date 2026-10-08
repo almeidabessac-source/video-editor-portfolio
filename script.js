@@ -1,6 +1,6 @@
 const profile = window.portfolio;
 document.querySelectorAll('[data-name]').forEach(el => el.textContent = profile.name);
-document.title = `${profile.name} | Video Editing Portfolio`;
+document.title = "Christian | Video Editing Portfolio";
 document.getElementById('bio').textContent = profile.bio;
 document.getElementById('contact-cta').textContent = profile.contactCTA;
 if(profile.photo){ const img=document.createElement('img'); img.src=profile.photo; img.alt='Portrait of the video editor'; const orb=document.querySelector('.orb'); orb.removeAttribute('role'); orb.removeAttribute('aria-label'); orb.replaceChildren(img); }
@@ -16,7 +16,7 @@ function renderVideos(ids, target, short){
   const caption=document.createElement('div'); caption.className='caption';
   const name=document.createElement('h4'); name.textContent=`${short?'Short-form':'Long-form'} / 0${i+1}`;
   const tag=document.createElement('span'); tag.textContent='DEMO'; caption.append(name); if(!local)caption.append(tag); card.append(caption);
-  const fallback=document.createElement('a'); fallback.className='fallback'; fallback.href=local?id:`https://www.youtube.com/watch?v=${encodeURIComponent(id)}`; fallback.target='_blank'; fallback.rel='noopener noreferrer'; fallback.textContent=local?'Open video ↗':'If playback is unavailable, watch on YouTube ↗'; if(!local)card.append(fallback);
+  const fallback=document.createElement('a'); fallback.className='fallback'; fallback.href=local?id:`https://www.youtube.com/watch?v=${encodeURIComponent(id)}`; fallback.target='_blank'; fallback.rel='noopener noreferrer'; fallback.textContent=local?'Open video ↗':'If playback is unavailable, watch on YouTube ↗'; 
   document.getElementById(target).append(card);
  });
 }
@@ -31,4 +31,5 @@ if(profile.email)link('Email ↗',`mailto:${profile.email}`,false);
 if(profile.twitter)link('X ↗',`https://x.com/${encodeURIComponent(profile.twitter.replace(/^@/,''))}`,true);
 if(profile.discord){const button=document.createElement('button');button.className='button';button.textContent=`Discord: ${profile.discord}`;button.addEventListener('click',async()=>{const status=document.getElementById('feedback');try{await navigator.clipboard.writeText(profile.discord);status.textContent='Copied!';setTimeout(()=>status.textContent='',2000);}catch{status.textContent=`Copy this username: ${profile.discord}`;}});contacts.append(button);}
 document.getElementById('contact-pending').hidden=contacts.children.length>0;
+
 
