@@ -8,13 +8,15 @@ function renderVideos(ids, target, short){
  ids.forEach((id,i)=>{
   const card=document.createElement('article'); card.className='video-card';
   const frame=document.createElement('div'); frame.className='video-frame'+(short?' vertical':'');
+  const local = id.endsWith('.mp4');
+  if(local){const video=document.createElement('video');video.src=id;video.controls=true;video.playsInline=true;video.preload='metadata';video.setAttribute('aria-label',`Short-form video ${i+1}`);frame.append(video);}
   const iframe=document.createElement('iframe'); iframe.src=`https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=0&playsinline=1&rel=0`;
   iframe.title=`${short?'Short-form':'Long-form'} demonstration ${i+1}`; iframe.loading='lazy'; iframe.referrerPolicy='strict-origin-when-cross-origin'; iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; iframe.allowFullscreen=true;
-  frame.append(iframe); card.append(frame);
+  if(!local)frame.append(iframe); card.append(frame);
   const caption=document.createElement('div'); caption.className='caption';
   const name=document.createElement('h4'); name.textContent=`${short?'Short-form':'Long-form'} / 0${i+1}`;
-  const tag=document.createElement('span'); tag.textContent='DEMO'; caption.append(name,tag); card.append(caption);
-  const fallback=document.createElement('a'); fallback.className='fallback'; fallback.href=`https://www.youtube.com/watch?v=${encodeURIComponent(id)}`; fallback.target='_blank'; fallback.rel='noopener noreferrer'; fallback.textContent='If playback is unavailable, watch on YouTube ↗'; card.append(fallback);
+  const tag=document.createElement('span'); tag.textContent='DEMO'; caption.append(name); if(!local)caption.append(tag); card.append(caption);
+  const fallback=document.createElement('a'); fallback.className='fallback'; fallback.href=local?id:`https://www.youtube.com/watch?v=${encodeURIComponent(id)}`; fallback.target='_blank'; fallback.rel='noopener noreferrer'; fallback.textContent=local?'Open video ↗':'If playback is unavailable, watch on YouTube ↗'; card.append(fallback);
   document.getElementById(target).append(card);
  });
 }
@@ -26,6 +28,6 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu)); doc
 const contacts=document.getElementById('contact-links');
 function link(text,href,external){const a=document.createElement('a');a.className='button';a.textContent=text;a.href=href;if(external){a.target='_blank';a.rel='noopener noreferrer';}contacts.append(a);}
 if(profile.email)link('Email ↗',`mailto:${profile.email}`,false);
-if(profile.twitter)link('Twitter ↗',`https://twitter.com/${encodeURIComponent(profile.twitter.replace(/^@/,''))}`,true);
+if(profile.twitter)link('X ↗',`https://x.com/${encodeURIComponent(profile.twitter.replace(/^@/,''))}`,true);
 if(profile.discord){const button=document.createElement('button');button.className='button';button.textContent=`Discord: ${profile.discord}`;button.addEventListener('click',async()=>{const status=document.getElementById('feedback');try{await navigator.clipboard.writeText(profile.discord);status.textContent='Copied!';setTimeout(()=>status.textContent='',2000);}catch{status.textContent=`Copy this username: ${profile.discord}`;}});contacts.append(button);}
 document.getElementById('contact-pending').hidden=contacts.children.length>0;
