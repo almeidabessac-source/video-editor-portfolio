@@ -3,7 +3,7 @@ document.querySelectorAll('[data-name]').forEach(el => el.textContent = profile.
 document.title = `${profile.name} | Video Editing Portfolio`;
 document.getElementById('bio').textContent = profile.bio;
 document.getElementById('contact-cta').textContent = profile.contactCTA;
-if(profile.photo){ const img=document.createElement('img'); img.src=profile.photo; img.alt=profile.name; document.querySelector('.orb').replaceChildren(img); }
+if(profile.photo){ const img=document.createElement('img'); img.src=profile.photo; img.alt='Portrait of the video editor'; const orb=document.querySelector('.orb'); orb.removeAttribute('role'); orb.removeAttribute('aria-label'); orb.replaceChildren(img); }
 function renderVideos(ids, target, short){
  ids.forEach((id,i)=>{
   const card=document.createElement('article'); card.className='video-card';

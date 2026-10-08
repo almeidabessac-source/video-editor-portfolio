@@ -5,8 +5,9 @@ window.portfolio = {
   email: "",
   twitter: "",
   discord: "",
-  photo: "",
+  photo: "profile.png",
   contactCTA: "Send me a message and let's work together!",
   longVideos: ["nZWnaj7pBeg", "nZWnaj7pBeg", "nZWnaj7pBeg"],
   shortVideos: ["Y0DorC3ynBY", "Y0DorC3ynBY", "Y0DorC3ynBY"]
 };
+
