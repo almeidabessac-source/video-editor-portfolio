@@ -20,7 +20,7 @@ function renderVideos(ids, target, short){
   document.getElementById(target).append(card);
  });
 }
-renderVideos(profile.longVideos,'long-videos',false); renderVideos(profile.shortVideos,'short-videos',true);
+[['long-edited',2,false],['long-original',2,false],['short-edited',3,true],['short-original',3,true]].forEach(([id,count,short])=>{for(let i=0;i<count;i++){const slot=document.createElement('div');slot.className='empty-slot'+(short?' portrait':'');slot.setAttribute('role','img');slot.setAttribute('aria-label',id.replace('-',' ')+' empty space '+(i+1));document.getElementById(id).append(slot);}});
 const menu=document.querySelector('.menu'), nav=document.getElementById('navigation');
 function closeMenu(){menu.setAttribute('aria-expanded','false');nav.classList.remove('open');}
 menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});
@@ -31,5 +31,6 @@ if(profile.email)link('Email ↗',`mailto:${profile.email}`,false);
 if(profile.twitter)link('X ↗',`https://x.com/${encodeURIComponent(profile.twitter.replace(/^@/,''))}`,true);
 if(profile.discord){const button=document.createElement('button');button.className='button';button.textContent=`Discord: ${profile.discord}`;button.addEventListener('click',async()=>{const status=document.getElementById('feedback');try{await navigator.clipboard.writeText(profile.discord);status.textContent='Copied!';setTimeout(()=>status.textContent='',2000);}catch{status.textContent=`Copy this username: ${profile.discord}`;}});contacts.append(button);}
 document.getElementById('contact-pending').hidden=contacts.children.length>0;
+
 
 
