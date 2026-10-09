@@ -8,8 +8,9 @@ window.portfolio = {
   photo: "profile.png",
   contactCTA: "Send me a message and let's work together!",
   longVideos: ["nZWnaj7pBeg", "nZWnaj7pBeg", "nZWnaj7pBeg", "nZWnaj7pBeg"],
-  shortVideos: ["short-01.mp4", "short-02.mp4", "Y0DorC3ynBY"]
+  shortVideos: ["short-01.mp4", "short-02.mp4", "short-03.mp4"]
 };
+
 
 
 
