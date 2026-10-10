@@ -25,7 +25,11 @@ function fillVideo(target, source, label, index=0){
  const slot=document.getElementById(target).children[index];slot.removeAttribute('role');slot.removeAttribute('aria-label');
  const video=document.createElement('video');video.src=source;video.controls=true;video.playsInline=true;video.preload='metadata';video.setAttribute('controlsList','nodownload');video.setAttribute('aria-label',label);video.addEventListener('contextmenu',e=>e.preventDefault());slot.append(video);
 }
-fillVideo('long-edited','long-edited-01.mp4','Edited video 1');
+const editedSlot=document.getElementById('long-edited').firstElementChild;editedSlot.removeAttribute('role');editedSlot.removeAttribute('aria-label');
+const cover=document.createElement('button');cover.className='video-cover';cover.setAttribute('aria-label','Play edited video 1');
+const thumb=document.createElement('img');thumb.src='edited-thumbnail.png';thumb.alt='How to Plan an MVP — edited version by Christian for portfolio';cover.append(thumb);
+const play=document.createElement('span');play.className='cover-play';play.textContent='▶';cover.append(play);editedSlot.append(cover);
+cover.addEventListener('click',()=>{const frame=document.createElement('iframe');frame.src='https://www.youtube.com/embed/vDq9OvMkSVY?autoplay=1&playsinline=1&rel=0';frame.title='Edited video 1';frame.referrerPolicy='strict-origin-when-cross-origin';frame.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';frame.allowFullscreen=true;editedSlot.replaceChildren(frame);});
 const originalSlot=document.getElementById('long-original').firstElementChild;originalSlot.removeAttribute('role');originalSlot.removeAttribute('aria-label');
 const originalFrame=document.createElement('iframe');originalFrame.src='https://www.youtube.com/embed/1hHMwLxN6EM?playsinline=1&rel=0';originalFrame.title='Original video 1';originalFrame.loading='lazy';originalFrame.referrerPolicy='strict-origin-when-cross-origin';originalFrame.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';originalFrame.allowFullscreen=true;originalSlot.append(originalFrame);
 [1,2,3].forEach((n,i)=>{fillVideo('short-edited',`short-0${n}.mp4`,`Edited short video ${n}`,i);fillVideo('short-original',`short-original-0${n}.mp4`,`Original short video ${n}`,i);});
@@ -39,6 +43,7 @@ if(profile.email)link('Email ↗',`mailto:${profile.email}`,false);
 if(profile.twitter)link('X ↗',`https://x.com/${encodeURIComponent(profile.twitter.replace(/^@/,''))}`,true);
 if(profile.discord){const button=document.createElement('button');button.className='button';button.textContent=`Discord: ${profile.discord}`;button.addEventListener('click',async()=>{const status=document.getElementById('feedback');try{await navigator.clipboard.writeText(profile.discord);status.textContent='Copied!';setTimeout(()=>status.textContent='',2000);}catch{status.textContent=`Copy this username: ${profile.discord}`;}});contacts.append(button);}
 document.getElementById('contact-pending').hidden=contacts.children.length>0;
+
 
 
 
