@@ -20,7 +20,7 @@ function renderVideos(ids, target, short){
   document.getElementById(target).append(card);
  });
 }
-[['long-edited',2,false],['long-original',2,false],['short-edited',3,true],['short-original',3,true]].forEach(([id,count,short])=>{for(let i=0;i<count;i++){const slot=document.createElement('div');slot.className='empty-slot'+(short?' portrait':'');slot.setAttribute('role','img');slot.setAttribute('aria-label',id.replace('-',' ')+' empty space '+(i+1));document.getElementById(id).append(slot);}});
+[['long-edited',1,false],['long-original',1,false],['short-edited',3,true],['short-original',3,true]].forEach(([id,count,short])=>{for(let i=0;i<count;i++){const slot=document.createElement('div');slot.className='empty-slot'+(short?' portrait':'');slot.setAttribute('role','img');slot.setAttribute('aria-label',id.replace('-',' ')+' empty space '+(i+1));document.getElementById(id).append(slot);}});
 function fillVideo(target, source, label, index=0){
  const slot=document.getElementById(target).children[index];slot.removeAttribute('role');slot.removeAttribute('aria-label');
  const video=document.createElement('video');video.src=source;video.controls=true;video.playsInline=true;video.preload='metadata';video.setAttribute('controlsList','nodownload');video.setAttribute('aria-label',label);video.addEventListener('contextmenu',e=>e.preventDefault());slot.append(video);
