@@ -1,7 +1,7 @@
 // Replace these values when your personal information and portfolio are ready.
 window.portfolio = {
   name: "Video Editor",
-  bio: "I'm an 18-year-old video editor specializing in entrepreneurship content for entrepreneurs, digital product creators, and service providers.",
+  bio: "I'm an 18-year-old video editor working to support my family through video editing.",
   email: "",
   twitter: "christian_editx",
   discord: "",
@@ -10,7 +10,6 @@ window.portfolio = {
   longVideos: ["nZWnaj7pBeg", "nZWnaj7pBeg", "nZWnaj7pBeg", "nZWnaj7pBeg"],
   shortVideos: ["short-01.mp4", "short-02.mp4", "short-03.mp4"]
 };
-
 
 
 
