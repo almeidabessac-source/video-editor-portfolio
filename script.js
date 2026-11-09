@@ -2,7 +2,7 @@ const profile = window.portfolio;
 document.querySelectorAll('[data-name]').forEach(el => el.textContent = profile.name);
 document.title = "Christian | Video Editing Portfolio";
 document.getElementById('bio').textContent = profile.bio;
-document.getElementById('contact-cta').textContent = profile.contactCTA;
+
 if(profile.photo){ const img=document.createElement('img'); img.src=profile.photo; img.alt='Portrait of the video editor'; const orb=document.querySelector('.orb'); orb.removeAttribute('role'); orb.removeAttribute('aria-label'); orb.replaceChildren(img); }
 function renderVideos(ids, target, short){
  ids.forEach((id,i)=>{
@@ -37,16 +37,3 @@ const menu=document.querySelector('.menu'), nav=document.getElementById('navigat
 function closeMenu(){menu.setAttribute('aria-expanded','false');nav.classList.remove('open');}
 menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu)); document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();menu.focus();}});
-const contacts=document.getElementById('contact-links');
-function link(text,href,external){const a=document.createElement('a');a.className='button';a.textContent=text;a.href=href;if(external){a.target='_blank';a.rel='noopener noreferrer';}contacts.append(a);}
-if(profile.email)link('Email ↗',`mailto:${profile.email}`,false);
-if(profile.twitter)link('X ↗',`https://x.com/${encodeURIComponent(profile.twitter.replace(/^@/,''))}`,true);
-if(profile.discord){const button=document.createElement('button');button.className='button';button.textContent=`Discord: ${profile.discord}`;button.addEventListener('click',async()=>{const status=document.getElementById('feedback');try{await navigator.clipboard.writeText(profile.discord);status.textContent='Copied!';setTimeout(()=>status.textContent='',2000);}catch{status.textContent=`Copy this username: ${profile.discord}`;}});contacts.append(button);}
-document.getElementById('contact-pending').hidden=contacts.children.length>0;
-
-
-
-
-
-
-
